@@ -14,16 +14,16 @@ extension UIImage {
      Crops an image to the CGRect
      - Parameters:
      - toRect: CGRect
-     - Returns: UIImage?
+     - Returns: UIImage
      - Usage:
      var myImage = UIImage(named: "foo")
      someImageView.image = myImage.crop(CGRect(x: 0, y: 0, width: 100, height: 100))
      */
-    func crop(_ rect: CGRect) -> UIImage? {
+    func crop(_ rect: CGRect) -> UIImage {
         if let imageRef = self.cgImage?.cropping(to: rect) {
             return UIImage(cgImage: imageRef)
         }
-        return nil
+        return self
     }
     
     /**

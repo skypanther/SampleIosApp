@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4D3334982E3A0EEE520E0D2A /* Pods_FotoFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E098829CF01CFA5D0C8FAA /* Pods_FotoFilter.framework */; };
+		9A370F612272846F00649B3D /* bean.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A370F602272846F00649B3D /* bean.jpg */; };
 		9A506B04227220B500E89FB7 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A506B03227220B500E89FB7 /* PhotoCell.swift */; };
 		9A506B072272214F00E89FB7 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A506B062272214F00E89FB7 /* Photo.swift */; };
-		9A506B0C2272361100E89FB7 /* nophotos.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A506B0B2272361100E89FB7 /* nophotos.xib */; };
 		9A506B0E2272399E00E89FB7 /* bezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A506B0D2272399E00E89FB7 /* bezier.swift */; };
 		9AE91781224957E300732FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE91780224957E300732FD6 /* AppDelegate.swift */; };
 		9AE91783224957E300732FD6 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE91782224957E300732FD6 /* MainScreenViewController.swift */; };
@@ -42,9 +42,9 @@
 		4A54C228C7AEA79FFBEED525 /* Pods-FotoFilterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FotoFilterTests.debug.xcconfig"; path = "Target Support Files/Pods-FotoFilterTests/Pods-FotoFilterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5844821A965126DC733D4CEF /* Pods-FotoFilterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FotoFilterTests.release.xcconfig"; path = "Target Support Files/Pods-FotoFilterTests/Pods-FotoFilterTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C8EF4FF4D6361DD91C6F3BB /* Pods-FotoFilter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FotoFilter.release.xcconfig"; path = "Target Support Files/Pods-FotoFilter/Pods-FotoFilter.release.xcconfig"; sourceTree = "<group>"; };
+		9A370F602272846F00649B3D /* bean.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bean.jpg; sourceTree = "<group>"; };
 		9A506B03227220B500E89FB7 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		9A506B062272214F00E89FB7 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
-		9A506B0B2272361100E89FB7 /* nophotos.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = nophotos.xib; sourceTree = "<group>"; };
 		9A506B0D2272399E00E89FB7 /* bezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bezier.swift; sourceTree = "<group>"; };
 		9AE9177D224957E300732FD6 /* FotoFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FotoFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE91780224957E300732FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,20 +93,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9A370F5F2272845800649B3D /* SamplePhotos */ = {
+			isa = PBXGroup;
+			children = (
+				9A370F602272846F00649B3D /* bean.jpg */,
+			);
+			path = SamplePhotos;
+			sourceTree = "<group>";
+		};
 		9A506B052272213200E89FB7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				9A506B062272214F00E89FB7 /* Photo.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		9A506B0A227235D700E89FB7 /* nibs */ = {
-			isa = PBXGroup;
-			children = (
-				9A506B0B2272361100E89FB7 /* nophotos.xib */,
-			);
-			path = nibs;
 			sourceTree = "<group>";
 		};
 		9AE91774224957E300732FD6 = {
@@ -132,6 +132,7 @@
 		9AE9177F224957E300732FD6 /* FotoFilter */ = {
 			isa = PBXGroup;
 			children = (
+				9A370F5F2272845800649B3D /* SamplePhotos */,
 				9AE917A12249667000732FD6 /* Controllers */,
 				9AE917A02249664800732FD6 /* Supporting files */,
 				9A506B052272213200E89FB7 /* Models */,
@@ -152,7 +153,6 @@
 		9AE917A02249664800732FD6 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
-				9A506B0A227235D700E89FB7 /* nibs */,
 				9AE91780224957E300732FD6 /* AppDelegate.swift */,
 				9AE91784224957E300732FD6 /* Main.storyboard */,
 				9AE91787224957E400732FD6 /* Assets.xcassets */,
@@ -280,8 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE9178B224957E400732FD6 /* LaunchScreen.storyboard in Resources */,
+				9A370F612272846F00649B3D /* bean.jpg in Resources */,
 				9AE917AC22496B3F00732FD6 /* Colors.xcassets in Resources */,
-				9A506B0C2272361100E89FB7 /* nophotos.xib in Resources */,
 				9AE91788224957E400732FD6 /* Assets.xcassets in Resources */,
 				9AE91786224957E300732FD6 /* Main.storyboard in Resources */,
 			);

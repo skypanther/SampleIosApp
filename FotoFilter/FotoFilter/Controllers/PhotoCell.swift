@@ -13,10 +13,16 @@ class PhotoCell: UICollectionViewCell {
     
     var photo: Photo? {
         didSet {
-            if let photo = photo, photo.photoPath != "" {
+            if let photo = photo, photo.photoFileName != "" {
                 // show it
-                image.image = UIImage(contentsOfFile: photo.photoPath)
-//                print(photo.photoDescription)
+                let fullPath = GeneralUtilities.getFullURLToMedia(filename: photo.photoFileName)
+                if var img = UIImage(contentsOfFile: fullPath.standardizedFileURL.path) {
+                    img = img.scaleUIImageToWidth(180)
+                    img = img.crop(CGRect(x: 0, y: 0, width: 180, height: 180))
+                    image.image = img
+                } else {
+                    print("can't find photo at: ", photo.photoFileName)
+                }
             } else {
                 let lbl: UILabel = {
                     let label = UILabel()

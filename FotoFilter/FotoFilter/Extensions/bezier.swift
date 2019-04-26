@@ -3,7 +3,8 @@
 //  FotoFilter
 //
 //  Created by Timothy Poulsen on 4/25/19.
-//  Copyright © 2019 Tim Poulsen. All rights reserved.
+//  Source: https://gist.github.com/mwermuth/07825df27ea28f5fc89a
+//  Updated to Swift 4 by Tim Poulsen
 //
 
 import Foundation
@@ -14,7 +15,10 @@ extension UIBezierPath {
     class func getAxisAlignedArrowPoints(_ points: inout Array<CGPoint>, forLength: CGFloat, tailWidth: CGFloat, headWidth: CGFloat, headLength: CGFloat ) {
         
         let tailLength = forLength - headLength
-        points.append(CGPoint(x: 0, y: tailWidth/2))
+        // Removing this first point as defined in the source script
+        // creates a line that starts with zero width and
+        // gradually increases to the final tailWidth value
+        // points.append(CGPoint(x: 0, y: tailWidth/2))
         points.append(CGPoint(x: tailLength, y: tailWidth/2))
         points.append(CGPoint(x: tailLength, y: headWidth/2))
         points.append(CGPoint(x: forLength, y: 0))

@@ -9,14 +9,21 @@
 import UIKit
 import RealmSwift
 
-class MainScreenViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MainScreenViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noPhotosLabel: UILabel!
     
+    @IBAction func cameraButton(_ sender: UIBarButtonItem) {
+        // TODO: Take a photo
+        self.photoManager.addDummyPhoto()
+        self.collectionView.reloadData()
+    }
+    
     let photoManager = PhotoManager()
     var photos: Results<Photo>?
+    var arrow: CAShapeLayer? = nil
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
@@ -24,25 +31,27 @@ class MainScreenViewController: UIViewController, UICollectionViewDelegate, UICo
     override var shouldAutorotate: Bool {
         return false
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppDelegate.OrientationTools.lockOrientation(.portrait, andRotateTo: .portrait)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        if true || self.photoManager.count() == 0 {
-//            let mockPhoto = Photo()
-//            mockPhoto.photoDescription = "mock photo"
-//            self.photoManager.add(mockPhoto)
+        if self.photoManager.count() == 0 {
             self.collectionView.isHidden = true
             self.noPhotosLabel.isHidden = false
-            let width = self.bgView.frame.width
-            let height = self.bgView.frame.height
-            let arrowPath = UIBezierPath.bezierPathWithArrowFromPoint(startPoint: CGPoint(x: width/2, y: height/4), endPoint: CGPoint(x: width - 46, y: 96), tailWidth: 4, headWidth: 16, headLength: 12)
-            let shape = CAShapeLayer()
-            shape.path = arrowPath.cgPath
-            shape.fillColor = UIColor.darkGray.cgColor;
-            self.bgView.layer.addSublayer(shape)
-            
+            if self.arrow == nil {
+                self.arrow = makeArrow()
+            }
+            self.bgView.layer.addSublayer(self.arrow!)
         } else {
             self.collectionView.isHidden = false
             self.noPhotosLabel.isHidden = true
+            if self.arrow != nil {
+                self.arrow!.removeFromSuperlayer()
+            }
         }
         self.photos = self.photoManager.all()
     }
@@ -60,8 +69,24 @@ class MainScreenViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
+        let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 3
         return CGSize(width: itemSize, height: itemSize)
+    }
+    
+    private func makeArrow() -> CAShapeLayer {
+        let width = self.bgView.frame.width
+        let height = self.bgView.frame.height
+        let startPoint = CGPoint(x: width/2, y: height/4)
+        let endPoint = CGPoint(x: width - 46, y: 96)
+        let arrowPath = UIBezierPath.bezierPathWithArrowFromPoint(startPoint: startPoint,
+                                                                  endPoint: endPoint,
+                                                                  tailWidth: 8,
+                                                                  headWidth: 20,
+                                                                  headLength: 14)
+        let shape = CAShapeLayer()
+        shape.path = arrowPath.cgPath
+        shape.fillColor = UIColor.darkGray.cgColor;
+        return shape
     }
 
 }

@@ -11,7 +11,7 @@ import RealmSwift
 
 class Photo: Object {
     @objc dynamic var photoDescription = ""
-    @objc dynamic var photoPath = ""
+    @objc dynamic var photoFileName = ""
     @objc dynamic var created = Date()
 }
 
@@ -34,4 +34,30 @@ class PhotoManager {
         }
     }
     
+    public func addDummyPhoto() {
+        let photos = self.realm.objects(Photo.self)
+        let mockPhoto = Photo()
+        mockPhoto.photoDescription = "Mock photo"
+        mockPhoto.photoFileName = "bean\(photos.count + 1).jpg"
+        try! self.realm.write {
+            self.realm.add(mockPhoto)
+            self.copySamplePhotoToDocuments(targetFileName: mockPhoto.photoFileName)
+        }
+    }
+
+    private func copySamplePhotoToDocuments(targetFileName: String) {
+        if let samplePhotoURL = Bundle.main.url(forResource: "bean", withExtension: "jpg") {
+            // even though the sample JPG is in the SamplePhotos folder, the above will find
+            // it (and adding the `subdirectory=""` param will cause it to fail!)
+            let targetURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(targetFileName)
+            do {
+                try FileManager.default.copyItem(at: samplePhotoURL, to: targetURL)
+            }
+            catch {
+                print("failed to copy example")
+                print(error)
+            }
+        }
+    }
+
 }
