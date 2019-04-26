@@ -78,7 +78,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BKx-Ll-cLL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -114,7 +114,7 @@
                         <viewLayoutGuide key="safeArea" id="zhy-G1-EcZ"/>
                     </view>
                     <navigationItem key="navigationItem" title="FotoFilter" id="HCk-jL-Bke">
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="XNh-Kb-ncX">
+                        <barButtonItem key="rightBarButtonItem" title="Photo" style="plain" id="XNh-Kb-ncX">
                             <connections>
                                 <action selector="cameraButton:" destination="39u-7e-3SB" id="uF8-34-zSR"/>
                             </connections>
@@ -122,13 +122,109 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bgView" destination="MIx-pi-r9w" id="kIs-bh-46V"/>
+                        <outlet property="cameraButtonOutlet" destination="XNh-Kb-ncX" id="M9v-eO-FKO"/>
                         <outlet property="collectionView" destination="aH4-iW-Xk1" id="Dco-R2-vox"/>
                         <outlet property="noPhotosLabel" destination="dZ3-XP-F2S" id="4hf-xC-G0a"/>
+                        <segue destination="SjC-b3-i6c" kind="show" identifier="goEdit" id="SJW-8U-bKH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3z1-al-caB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1575" y="775"/>
+        </scene>
+        <!--Apply Filter-->
+        <scene sceneID="GjE-SE-u9s">
+            <objects>
+                <viewController storyboardIdentifier="applyFilterScreen" title="Apply Filter" id="SjC-b3-i6c" customClass="ApplyFilterViewController" customModule="FotoFilter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RtT-rC-BJW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="i3o-uy-v6v">
+                                <rect key="frame" x="0.0" y="683" width="375" height="80"/>
+                                <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="6FA-i4-qC8"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="psM-tI-oC6">
+                                    <size key="itemSize" width="80" height="80"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" reuseIdentifier="FilterCell" id="iGD-ox-I3s" customClass="FilterCellCollectionViewCell" customModule="FotoFilter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LtV-Hk-Cg7">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="AhC-Gl-xj2"/>
+                                                        <constraint firstAttribute="height" constant="80" id="hQw-gY-oAD"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="LtV-Hk-Cg7" firstAttribute="top" secondItem="iGD-ox-I3s" secondAttribute="top" id="FNM-A0-mh6"/>
+                                            <constraint firstItem="LtV-Hk-Cg7" firstAttribute="leading" secondItem="iGD-ox-I3s" secondAttribute="leading" id="Ugr-K2-miD"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8hO-Y8-9IL">
+                                <rect key="frame" x="0.0" y="478" width="375" height="190"/>
+                                <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="84U-UW-aVM">
+                                <rect key="frame" x="0.0" y="88" width="375" height="375"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="375" id="oEC-v0-WZc"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="84U-UW-aVM" firstAttribute="trailing" secondItem="Adt-E2-QS3" secondAttribute="trailing" id="2KU-iy-Zm0"/>
+                            <constraint firstItem="i3o-uy-v6v" firstAttribute="trailing" secondItem="Adt-E2-QS3" secondAttribute="trailing" id="4u8-MT-peI"/>
+                            <constraint firstItem="84U-UW-aVM" firstAttribute="leading" secondItem="Adt-E2-QS3" secondAttribute="leading" id="7B6-mI-ZDT"/>
+                            <constraint firstItem="i3o-uy-v6v" firstAttribute="leading" secondItem="Adt-E2-QS3" secondAttribute="leading" id="LYV-Ep-zXj"/>
+                            <constraint firstItem="8hO-Y8-9IL" firstAttribute="top" secondItem="84U-UW-aVM" secondAttribute="bottom" constant="15" id="Whs-Sp-qWV"/>
+                            <constraint firstItem="Adt-E2-QS3" firstAttribute="trailing" secondItem="8hO-Y8-9IL" secondAttribute="trailing" id="gA2-Fq-IXr"/>
+                            <constraint firstItem="Adt-E2-QS3" firstAttribute="bottom" secondItem="i3o-uy-v6v" secondAttribute="bottom" constant="15" id="ifd-ww-y7A"/>
+                            <constraint firstItem="84U-UW-aVM" firstAttribute="top" secondItem="Adt-E2-QS3" secondAttribute="top" id="oqP-ls-9Ww"/>
+                            <constraint firstItem="i3o-uy-v6v" firstAttribute="top" secondItem="8hO-Y8-9IL" secondAttribute="bottom" constant="15" id="t1K-eL-ajG"/>
+                            <constraint firstItem="8hO-Y8-9IL" firstAttribute="leading" secondItem="Adt-E2-QS3" secondAttribute="leading" id="ylO-Td-sCO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Adt-E2-QS3"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Apply Filters" id="u4a-t8-SqV">
+                        <barButtonItem key="leftBarButtonItem" title="Home" style="plain" id="aUh-u5-EJX">
+                            <connections>
+                                <action selector="homeButtonHandler:" destination="SjC-b3-i6c" id="tft-r4-6EG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Share" style="plain" id="Ige-rL-IOX">
+                            <connections>
+                                <action selector="shareButtonHandler:" destination="SjC-b3-i6c" id="d9g-do-2Se"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="filterCollectionView" destination="i3o-uy-v6v" id="N1W-nB-8ek"/>
+                        <outlet property="filterDetails" destination="8hO-Y8-9IL" id="7P0-zB-lYV"/>
+                        <outlet property="homeButtonOutlet" destination="aUh-u5-EJX" id="WCw-Oz-gUZ"/>
+                        <outlet property="largeImage" destination="84U-UW-aVM" id="Kbi-zF-hkR"/>
+                        <outlet property="shareButtonOutlet" destination="Ige-rL-IOX" id="Puz-RO-eUE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hpM-Nt-odp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2472.8000000000002" y="768.4729064039409"/>
         </scene>
     </scenes>
 </document>

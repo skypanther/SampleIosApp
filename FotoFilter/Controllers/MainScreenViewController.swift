@@ -14,6 +14,7 @@ class MainScreenViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noPhotosLabel: UILabel!
+    @IBOutlet weak var cameraButtonOutlet: UIBarButtonItem!
     
     @IBAction func cameraButton(_ sender: UIBarButtonItem) {
         // TODO: Take a photo
@@ -39,6 +40,8 @@ class MainScreenViewController: UIViewController, UICollectionViewDelegate, UICo
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        cameraButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: [])
+        cameraButtonOutlet.title = ButtonStrings.camera
         if self.photoManager.count() == 0 {
             self.collectionView.isHidden = true
             self.noPhotosLabel.isHidden = false
@@ -56,6 +59,8 @@ class MainScreenViewController: UIViewController, UICollectionViewDelegate, UICo
         self.photos = self.photoManager.all()
     }
 
+    // MARK: CollectionView handlers
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photoManager.count()
     }
@@ -71,6 +76,17 @@ class MainScreenViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 3
         return CGSize(width: itemSize, height: itemSize)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let pictures = self.photos {
+            if let applyFilterView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "applyFilterScreen") as? ApplyFilterViewController {
+                applyFilterView.photo = pictures[indexPath.item]
+                if let navigator = navigationController {
+                    navigator.pushViewController(applyFilterView, animated: true)
+                }
+            }
+        }
     }
     
     private func makeArrow() -> CAShapeLayer {

@@ -12,6 +12,11 @@
 		9A506B04227220B500E89FB7 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A506B03227220B500E89FB7 /* PhotoCell.swift */; };
 		9A506B072272214F00E89FB7 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A506B062272214F00E89FB7 /* Photo.swift */; };
 		9A506B0E2272399E00E89FB7 /* bezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A506B0D2272399E00E89FB7 /* bezier.swift */; };
+		9A9FEC272273748A00ED7DD7 /* ApplyFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEC262273748A00ED7DD7 /* ApplyFilterViewController.swift */; };
+		9A9FEC2922738D2400ED7DD7 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEC2822738D2400ED7DD7 /* icomoon.ttf */; };
+		9A9FEC2C227390F200ED7DD7 /* FilterCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEC2B227390F200ED7DD7 /* FilterCellCollectionViewCell.swift */; };
+		9A9FEC2E227394C800ED7DD7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEC2D227394C800ED7DD7 /* Colors.xcassets */; };
+		9A9FEC302273976C00ED7DD7 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEC2F2273976C00ED7DD7 /* Config.swift */; };
 		9AE91781224957E300732FD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE91780224957E300732FD6 /* AppDelegate.swift */; };
 		9AE91783224957E300732FD6 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE91782224957E300732FD6 /* MainScreenViewController.swift */; };
 		9AE91786224957E300732FD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AE91784224957E300732FD6 /* Main.storyboard */; };
@@ -45,6 +50,11 @@
 		9A506B03227220B500E89FB7 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		9A506B062272214F00E89FB7 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		9A506B0D2272399E00E89FB7 /* bezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bezier.swift; sourceTree = "<group>"; };
+		9A9FEC262273748A00ED7DD7 /* ApplyFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyFilterViewController.swift; sourceTree = "<group>"; };
+		9A9FEC2822738D2400ED7DD7 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
+		9A9FEC2B227390F200ED7DD7 /* FilterCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		9A9FEC2D227394C800ED7DD7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		9A9FEC2F2273976C00ED7DD7 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		9AE9177D224957E300732FD6 /* FotoFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FotoFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE91780224957E300732FD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AE91782224957E300732FD6 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
@@ -156,7 +166,10 @@
 				9AE91787224957E400732FD6 /* Assets.xcassets */,
 				9AE91789224957E400732FD6 /* LaunchScreen.storyboard */,
 				9AE9178C224957E400732FD6 /* Info.plist */,
+				9A9FEC2822738D2400ED7DD7 /* icomoon.ttf */,
 				9AE917AD22496C0000732FD6 /* GeneralUtilities.swift */,
+				9A9FEC2D227394C800ED7DD7 /* Colors.xcassets */,
+				9A9FEC2F2273976C00ED7DD7 /* Config.swift */,
 			);
 			path = "Supporting files";
 			sourceTree = "<group>";
@@ -166,6 +179,8 @@
 			children = (
 				9AE91782224957E300732FD6 /* MainScreenViewController.swift */,
 				9A506B03227220B500E89FB7 /* PhotoCell.swift */,
+				9A9FEC262273748A00ED7DD7 /* ApplyFilterViewController.swift */,
+				9A9FEC2B227390F200ED7DD7 /* FilterCellCollectionViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,8 +291,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A9FEC2922738D2400ED7DD7 /* icomoon.ttf in Resources */,
 				9AE9178B224957E400732FD6 /* LaunchScreen.storyboard in Resources */,
 				9A370F612272846F00649B3D /* bean.jpg in Resources */,
+				9A9FEC2E227394C800ED7DD7 /* Colors.xcassets in Resources */,
 				9AE91788224957E400732FD6 /* Assets.xcassets in Resources */,
 				9AE91786224957E300732FD6 /* Main.storyboard in Resources */,
 			);
@@ -368,9 +385,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A9FEC2C227390F200ED7DD7 /* FilterCellCollectionViewCell.swift in Sources */,
 				9A506B072272214F00E89FB7 /* Photo.swift in Sources */,
+				9A9FEC272273748A00ED7DD7 /* ApplyFilterViewController.swift in Sources */,
 				9A506B04227220B500E89FB7 /* PhotoCell.swift in Sources */,
 				9AE917AA2249697500732FD6 /* uiView.swift in Sources */,
+				9A9FEC302273976C00ED7DD7 /* Config.swift in Sources */,
 				9AE91783224957E300732FD6 /* MainScreenViewController.swift in Sources */,
 				9AE91781224957E300732FD6 /* AppDelegate.swift in Sources */,
 				9AE917A82249693900732FD6 /* commonExtensions.swift in Sources */,
