@@ -14,6 +14,8 @@ class ApplyFilterViewController: UIViewController, Storyboarded, UICollectionVie
     weak var coordinator: MainCoordinator?
     
     var photo: Photo?
+    var miniPhoto: UIImage?
+    var filters: [Filter]?
     
     // Outlets
     @IBOutlet weak var largeImage: UIImageView!
@@ -48,16 +50,18 @@ class ApplyFilterViewController: UIViewController, Storyboarded, UICollectionVie
         homeButtonOutlet.title = ButtonStrings.home
         shareButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: [])
         shareButtonOutlet.title = ButtonStrings.share
+        self.filters = Filters.sharedInstance.filters
         if let pic = photo {
             let fullPath = GeneralUtilities.getFullURLToMedia(filename: pic.photoFileName)
             if var img = UIImage(contentsOfFile: fullPath.standardizedFileURL.path) {
+                self.miniPhoto = img.scaleUIImageToWidth(80).crop(CGRect(x: 0, y: 0, width: 80, height: 80))
                 img = img.scaleUIImageToWidth(375)
                 img = img.crop(CGRect(x: 0, y: 0, width: 375, height: 375))
                 self.largeImage.image = img
             } else {
                 print("can't find photo at: ", pic.photoFileName)
             }
-
+            filterCollectionView.reloadData()
         }
     }
     
@@ -65,11 +69,13 @@ class ApplyFilterViewController: UIViewController, Storyboarded, UICollectionVie
     // MARK: CollectionView handlers
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return self.filters?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath as IndexPath) as! FilterCellCollectionViewCell
+        cell.image = self.miniPhoto
+        cell.filter = self.filters?[indexPath.item]
         return cell
     }
     

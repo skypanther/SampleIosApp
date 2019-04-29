@@ -173,8 +173,15 @@
                                             <constraint firstItem="LtV-Hk-Cg7" firstAttribute="top" secondItem="iGD-ox-I3s" secondAttribute="top" id="FNM-A0-mh6"/>
                                             <constraint firstItem="LtV-Hk-Cg7" firstAttribute="leading" secondItem="iGD-ox-I3s" secondAttribute="leading" id="Ugr-K2-miD"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="thumbUIImageView" destination="LtV-Hk-Cg7" id="WX4-T5-abD"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="SjC-b3-i6c" id="xFb-Cv-1HM"/>
+                                    <outlet property="delegate" destination="SjC-b3-i6c" id="77q-Rw-H4A"/>
+                                </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8hO-Y8-9IL">
                                 <rect key="frame" x="0.0" y="478" width="375" height="190"/>
