@@ -133,6 +133,15 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		9A9FEC3822777A6300ED7DD7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A506B03227220B500E89FB7 /* PhotoCell.swift */,
+				9A9FEC2B227390F200ED7DD7 /* FilterCellCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9AE91774224957E300732FD6 = {
 			isa = PBXGroup;
 			children = (
@@ -156,10 +165,11 @@
 		9AE9177F224957E300732FD6 /* FotoFilter */ = {
 			isa = PBXGroup;
 			children = (
-				9A9FEC352277753700ED7DD7 /* Coordinators */,
 				9A370F5F2272845800649B3D /* SamplePhotos */,
 				9AE917A12249667000732FD6 /* Controllers */,
+				9A9FEC3822777A6300ED7DD7 /* Views */,
 				9AE917A02249664800732FD6 /* Supporting files */,
+				9A9FEC352277753700ED7DD7 /* Coordinators */,
 				9A506B052272213200E89FB7 /* Models */,
 				9AE917A4224968A900732FD6 /* Extensions */,
 			);
@@ -195,9 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				9AE91782224957E300732FD6 /* MainScreenViewController.swift */,
-				9A506B03227220B500E89FB7 /* PhotoCell.swift */,
 				9A9FEC262273748A00ED7DD7 /* ApplyFilterViewController.swift */,
-				9A9FEC2B227390F200ED7DD7 /* FilterCellCollectionViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
