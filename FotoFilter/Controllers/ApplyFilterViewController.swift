@@ -9,7 +9,9 @@
 import UIKit
 import RealmSwift
 
-class ApplyFilterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ApplyFilterViewController: UIViewController, Storyboarded, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    weak var coordinator: MainCoordinator?
     
     var photo: Photo?
     

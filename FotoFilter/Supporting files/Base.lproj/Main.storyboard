@@ -39,7 +39,7 @@
         <!--FotoFilter-->
         <scene sceneID="ReL-p2-8a5">
             <objects>
-                <viewController id="39u-7e-3SB" customClass="MainScreenViewController" customModule="FotoFilter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainScreenViewController" id="39u-7e-3SB" customClass="MainScreenViewController" customModule="FotoFilter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MIx-pi-r9w">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -135,7 +135,7 @@
         <!--Apply Filter-->
         <scene sceneID="GjE-SE-u9s">
             <objects>
-                <viewController storyboardIdentifier="applyFilterScreen" title="Apply Filter" id="SjC-b3-i6c" customClass="ApplyFilterViewController" customModule="FotoFilter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ApplyFilterViewController" title="Apply Filter" id="SjC-b3-i6c" customClass="ApplyFilterViewController" customModule="FotoFilter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RtT-rC-BJW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

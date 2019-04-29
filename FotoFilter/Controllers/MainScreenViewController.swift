@@ -9,8 +9,10 @@
 import UIKit
 import RealmSwift
 
-class MainScreenViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MainScreenViewController: UIViewController, Storyboarded, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    weak var coordinator: MainCoordinator?
+
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noPhotosLabel: UILabel!
@@ -80,12 +82,7 @@ class MainScreenViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let pictures = self.photos {
-            if let applyFilterView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "applyFilterScreen") as? ApplyFilterViewController {
-                applyFilterView.photo = pictures[indexPath.item]
-                if let navigator = navigationController {
-                    navigator.pushViewController(applyFilterView, animated: true)
-                }
-            }
+            coordinator?.editPhoto(photo: pictures[indexPath.item])
         }
     }
     

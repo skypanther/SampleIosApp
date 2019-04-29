@@ -13,6 +13,7 @@ A sample iOS app written in Swift to demonstrate my skills. All the other projec
 * CocoaPods use for dependency management
 * Realm data storage
 * Custom icon font
+* Coordinator pattern to address "massive view controllers"
 * etc...
 
 Target: iPhone running iOS 12.1, Xcode 10.2, Swift 4
