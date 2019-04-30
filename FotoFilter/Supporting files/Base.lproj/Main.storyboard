@@ -226,6 +226,7 @@
                         <outlet property="filterDetails" destination="8hO-Y8-9IL" id="7P0-zB-lYV"/>
                         <outlet property="homeButtonOutlet" destination="aUh-u5-EJX" id="WCw-Oz-gUZ"/>
                         <outlet property="largeImage" destination="84U-UW-aVM" id="Kbi-zF-hkR"/>
+                        <outlet property="screenBackgroundView" destination="RtT-rC-BJW" id="h2d-eg-Ypl"/>
                         <outlet property="shareButtonOutlet" destination="Ige-rL-IOX" id="Puz-RO-eUE"/>
                     </connections>
                 </viewController>

@@ -40,6 +40,22 @@ class Filters {
                               params: [
                                 FilterParam(name: "inputIntensity", friendlyName: "Intensity", value: 0.75)
             ]))
+        filters.append(Filter(name: "CIColorInvert",
+                              friendlyName: "Invert",
+                              params: []))
+        filters.append(Filter(name: "CIColorPosterize",
+                              friendlyName: "Posterize",
+                              params: [
+                                FilterParam(name: "inputLevels", friendlyName: "Amount", value: 10.0)
+            ]))
+        filters.append(Filter(name: "CICircularWrap",
+                              friendlyName: "Spiral",
+                              params: [
+                                FilterParam(name: "inputAngle", friendlyName: "Angle", value: 15.0),
+                                FilterParam(name: "inputCenter", friendlyName: "Center point", value: CIVector(x: 0.5, y: 0.5)),
+                                FilterParam(name: "inputRadius", friendlyName: "Radius", value: 40)
+            ]))
+
     }
 
 }

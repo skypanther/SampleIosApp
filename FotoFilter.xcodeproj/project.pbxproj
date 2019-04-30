@@ -12,6 +12,7 @@
 		9A506B04227220B500E89FB7 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A506B03227220B500E89FB7 /* PhotoCell.swift */; };
 		9A506B072272214F00E89FB7 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A506B062272214F00E89FB7 /* Photo.swift */; };
 		9A506B0E2272399E00E89FB7 /* bezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A506B0D2272399E00E89FB7 /* bezier.swift */; };
+		9A9760B02277D7D50094877A /* LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9760AF2277D7D50094877A /* LoadingSpinner.swift */; };
 		9A9FEC272273748A00ED7DD7 /* ApplyFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEC262273748A00ED7DD7 /* ApplyFilterViewController.swift */; };
 		9A9FEC2922738D2400ED7DD7 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEC2822738D2400ED7DD7 /* icomoon.ttf */; };
 		9A9FEC2C227390F200ED7DD7 /* FilterCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEC2B227390F200ED7DD7 /* FilterCellCollectionViewCell.swift */; };
@@ -54,6 +55,7 @@
 		9A506B03227220B500E89FB7 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		9A506B062272214F00E89FB7 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		9A506B0D2272399E00E89FB7 /* bezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bezier.swift; sourceTree = "<group>"; };
+		9A9760AF2277D7D50094877A /* LoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinner.swift; sourceTree = "<group>"; };
 		9A9FEC262273748A00ED7DD7 /* ApplyFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyFilterViewController.swift; sourceTree = "<group>"; };
 		9A9FEC2822738D2400ED7DD7 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
 		9A9FEC2B227390F200ED7DD7 /* FilterCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCellCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				9A506B03227220B500E89FB7 /* PhotoCell.swift */,
 				9A9FEC2B227390F200ED7DD7 /* FilterCellCollectionViewCell.swift */,
+				9A9760AF2277D7D50094877A /* LoadingSpinner.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				9A9FEC2C227390F200ED7DD7 /* FilterCellCollectionViewCell.swift in Sources */,
 				9A9FEC3A22778B9600ED7DD7 /* Filters.swift in Sources */,
 				9A506B072272214F00E89FB7 /* Photo.swift in Sources */,
+				9A9760B02277D7D50094877A /* LoadingSpinner.swift in Sources */,
 				9A9FEC322277734700ED7DD7 /* Coordinator.swift in Sources */,
 				9A9FEC272273748A00ED7DD7 /* ApplyFilterViewController.swift in Sources */,
 				9A506B04227220B500E89FB7 /* PhotoCell.swift in Sources */,
