@@ -13,6 +13,7 @@
 		9A506B072272214F00E89FB7 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A506B062272214F00E89FB7 /* Photo.swift */; };
 		9A506B0E2272399E00E89FB7 /* bezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A506B0D2272399E00E89FB7 /* bezier.swift */; };
 		9A9760B02277D7D50094877A /* LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9760AF2277D7D50094877A /* LoadingSpinner.swift */; };
+		9A9760B42278DDD80094877A /* PortraitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9760B32278DDD80094877A /* PortraitViewController.swift */; };
 		9A9FEC272273748A00ED7DD7 /* ApplyFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEC262273748A00ED7DD7 /* ApplyFilterViewController.swift */; };
 		9A9FEC2922738D2400ED7DD7 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A9FEC2822738D2400ED7DD7 /* icomoon.ttf */; };
 		9A9FEC2C227390F200ED7DD7 /* FilterCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9FEC2B227390F200ED7DD7 /* FilterCellCollectionViewCell.swift */; };
@@ -56,6 +57,7 @@
 		9A506B062272214F00E89FB7 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		9A506B0D2272399E00E89FB7 /* bezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bezier.swift; sourceTree = "<group>"; };
 		9A9760AF2277D7D50094877A /* LoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinner.swift; sourceTree = "<group>"; };
+		9A9760B32278DDD80094877A /* PortraitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PortraitViewController.swift; path = FotoFilter/Controllers/PortraitViewController.swift; sourceTree = "<group>"; };
 		9A9FEC262273748A00ED7DD7 /* ApplyFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyFilterViewController.swift; sourceTree = "<group>"; };
 		9A9FEC2822738D2400ED7DD7 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = icomoon.ttf; sourceTree = "<group>"; };
 		9A9FEC2B227390F200ED7DD7 /* FilterCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCellCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -126,6 +128,15 @@
 				9A9FEC3922778B9600ED7DD7 /* Filters.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		9A9760B22278DD9F0094877A /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				9A9760B32278DDD80094877A /* PortraitViewController.swift */,
+			);
+			name = BaseClasses;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		9A9FEC352277753700ED7DD7 /* Coordinators */ = {
@@ -210,6 +221,7 @@
 		9AE917A12249667000732FD6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A9760B22278DD9F0094877A /* BaseClasses */,
 				9AE91782224957E300732FD6 /* MainScreenViewController.swift */,
 				9A9FEC262273748A00ED7DD7 /* ApplyFilterViewController.swift */,
 			);
@@ -417,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A9FEC2C227390F200ED7DD7 /* FilterCellCollectionViewCell.swift in Sources */,
+				9A9760B42278DDD80094877A /* PortraitViewController.swift in Sources */,
 				9A9FEC3A22778B9600ED7DD7 /* Filters.swift in Sources */,
 				9A506B072272214F00E89FB7 /* Photo.swift in Sources */,
 				9A9760B02277D7D50094877A /* LoadingSpinner.swift in Sources */,

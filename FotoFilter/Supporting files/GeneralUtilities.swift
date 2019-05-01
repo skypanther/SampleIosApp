@@ -127,4 +127,22 @@ class GeneralUtilities {
             return false
         }
     }
+    
+    static func makeArrow(parentView: UIView) -> CAShapeLayer {
+        let width = parentView.frame.width
+        let height = parentView.frame.height
+        let startPoint = CGPoint(x: width/2, y: height/4)
+        let endPoint = CGPoint(x: width - 46, y: 96)
+        let arrowPath = UIBezierPath.bezierPathWithArrowFromPoint(startPoint: startPoint,
+                                                                  endPoint: endPoint,
+                                                                  tailWidth: 8,
+                                                                  headWidth: 20,
+                                                                  headLength: 14)
+        let shape = CAShapeLayer()
+        shape.path = arrowPath.cgPath
+        shape.fillColor = UIColor.darkGray.cgColor;
+        return shape
+    }
+    
+
 }

@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import CoreImage
 
-class ApplyFilterViewController: UIViewController, Storyboarded, UICollectionViewDelegate, UICollectionViewDataSource {
+class ApplyFilterViewController: PortraitViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
     
@@ -35,23 +35,19 @@ class ApplyFilterViewController: UIViewController, Storyboarded, UICollectionVie
     @IBAction func shareButtonHandler(_ sender: UIBarButtonItem) {
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-    override var shouldAutorotate: Bool {
-        return false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        AppDelegate.OrientationTools.lockOrientation(.portrait, andRotateTo: .portrait)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: [])
+        setupUI()
+    }
+    
+    fileprivate func setupUI() {
+        homeButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: .normal)
+        homeButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: .highlighted)
+        homeButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: .focused)
         homeButtonOutlet.title = ButtonStrings.home
-        shareButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: [])
+        shareButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: .normal)
+        shareButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: .highlighted)
+        shareButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: .focused)
         shareButtonOutlet.title = ButtonStrings.share
         self.filters = Filters.sharedInstance.filters
         self.spinner = LoadingSpinner(frame: self.screenBackgroundView.frame)
@@ -67,33 +63,10 @@ class ApplyFilterViewController: UIViewController, Storyboarded, UICollectionVie
             }
             filterCollectionView.reloadData()
         }
-    }
-    
-    
-    // MARK: CollectionView handlers
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.filters?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath as IndexPath) as! FilterCellCollectionViewCell
-        cell.image = self.miniPhoto
-        cell.filter = self.filters?[indexPath.item]
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        screenBackgroundView.addSubview(spinner!)
-        if let fltr = self.filters?[indexPath.item] {
-            applyFilter(fltr)
-        }
-        GeneralUtilities.delayFunctionBy(seconds: 0.15, function: {
-            self.spinner!.removeFromSuperview()
-        })
-    }
-    
-    private func applyFilter(_ filter: Filter) {
+    fileprivate func applyFilter(_ filter: Filter) {
         if let pic = photo {
             let fullPath = GeneralUtilities.getFullURLToMedia(filename: pic.photoFileName)
             if let img = UIImage(contentsOfFile: fullPath.standardizedFileURL.path) {
@@ -115,4 +88,32 @@ class ApplyFilterViewController: UIViewController, Storyboarded, UICollectionVie
         }
     }
     
+}
+
+// MARK: CollectionView handlers
+
+extension ApplyFilterViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.filters?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath as IndexPath) as! FilterCellCollectionViewCell
+        cell.image = self.miniPhoto
+        cell.filter = self.filters?[indexPath.item]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        screenBackgroundView.addSubview(spinner!)
+        if let fltr = self.filters?[indexPath.item] {
+            applyFilter(fltr)
+        }
+        GeneralUtilities.delayFunctionBy(seconds: 0.15, function: {
+            self.spinner!.removeFromSuperview()
+        })
+    }
+    
+
 }

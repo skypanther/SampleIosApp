@@ -13,20 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var coordinator: MainCoordinator?
     var window: UIWindow?
-
     var orientationLock = UIInterfaceOrientationMask.all
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        return self.orientationLock
-    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let navController = UINavigationController()
-        coordinator = MainCoordinator(navigationController: navController)
-        coordinator?.start()
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = navController
-        window?.makeKeyAndVisible()
+        setup()
+        setupNavigationBar()
         return true
     }
 
@@ -52,6 +43,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+}
+
+// MARK: Setup functions
+
+extension AppDelegate {
+    
+    fileprivate func setup() {
+        let navController = UINavigationController()
+        coordinator = MainCoordinator(navigationController: navController)
+        coordinator?.start()
+    
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = navController
+        window?.makeKeyAndVisible()
+    }
+
+    fileprivate func setupNavigationBar() {
+        // bar color
+        UINavigationBar.appearance().barTintColor = .darkGray
+        
+        // bar title/button color
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    }
+
+}
+
+// MARK: Orientation handling
+extension AppDelegate {
+
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return self.orientationLock
+    }
+    
     struct OrientationTools {
         static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
             if let delegate = UIApplication.shared.delegate as? AppDelegate {
@@ -63,6 +89,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
         }
     }
-    
-}
 
+}

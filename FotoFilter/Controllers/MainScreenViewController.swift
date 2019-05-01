@@ -9,10 +9,13 @@
 import UIKit
 import RealmSwift
 
-class MainScreenViewController: UIViewController, Storyboarded, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MainScreenViewController: PortraitViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
-
+    let photoManager = PhotoManager()
+    var photos: Results<Photo>?
+    var arrow: CAShapeLayer? = nil
+    
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noPhotosLabel: UILabel!
@@ -24,31 +27,26 @@ class MainScreenViewController: UIViewController, Storyboarded, UICollectionView
         self.collectionView.reloadData()
     }
     
-    let photoManager = PhotoManager()
-    var photos: Results<Photo>?
-    var arrow: CAShapeLayer? = nil
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-    override var shouldAutorotate: Bool {
-        return false
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AppDelegate.OrientationTools.lockOrientation(.portrait, andRotateTo: .portrait)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        cameraButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: [])
+        setupUI()
+        self.photos = self.photoManager.all()
+    }
+    
+    private func setupUI() {
+        cameraButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: .normal)
+        cameraButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: .highlighted)
+        cameraButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: .focused)
         cameraButtonOutlet.title = ButtonStrings.camera
         if self.photoManager.count() == 0 {
             self.collectionView.isHidden = true
             self.noPhotosLabel.isHidden = false
             if self.arrow == nil {
-                self.arrow = makeArrow()
+                self.arrow = GeneralUtilities.makeArrow(parentView: bgView)
             }
             self.bgView.layer.addSublayer(self.arrow!)
         } else {
@@ -58,10 +56,12 @@ class MainScreenViewController: UIViewController, Storyboarded, UICollectionView
                 self.arrow!.removeFromSuperlayer()
             }
         }
-        self.photos = self.photoManager.all()
     }
 
-    // MARK: CollectionView handlers
+}
+
+// MARK: CollectionView handlers
+extension MainScreenViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photoManager.count()
@@ -86,20 +86,5 @@ class MainScreenViewController: UIViewController, Storyboarded, UICollectionView
         }
     }
     
-    private func makeArrow() -> CAShapeLayer {
-        let width = self.bgView.frame.width
-        let height = self.bgView.frame.height
-        let startPoint = CGPoint(x: width/2, y: height/4)
-        let endPoint = CGPoint(x: width - 46, y: 96)
-        let arrowPath = UIBezierPath.bezierPathWithArrowFromPoint(startPoint: startPoint,
-                                                                  endPoint: endPoint,
-                                                                  tailWidth: 8,
-                                                                  headWidth: 20,
-                                                                  headLength: 14)
-        let shape = CAShapeLayer()
-        shape.path = arrowPath.cgPath
-        shape.fillColor = UIColor.darkGray.cgColor;
-        return shape
-    }
 
 }
