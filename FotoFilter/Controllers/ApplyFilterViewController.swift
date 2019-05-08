@@ -68,6 +68,13 @@ class ApplyFilterViewController: PortraitViewController, Storyboarded {
     
     fileprivate func applyFilter(_ filter: Filter) {
         if let pic = photo {
+            for childView in filterDetails.subviews {
+                childView.removeFromSuperview()
+            }
+            let paramContainer = ParametersContainer()
+            filterDetails.addSubview(paramContainer)
+            paramContainer.widthAnchor.constraint(equalTo: filterDetails.widthAnchor, multiplier: 1.0).isActive = true
+            paramContainer.heightAnchor.constraint(equalTo: filterDetails.heightAnchor, multiplier: 1.0).isActive = true
             let fullPath = GeneralUtilities.getFullURLToMedia(filename: pic.photoFileName)
             if let img = UIImage(contentsOfFile: fullPath.standardizedFileURL.path) {
                 let context = CIContext(options: nil)
@@ -75,6 +82,12 @@ class ApplyFilterViewController: PortraitViewController, Storyboarded {
                     let beginImage = CIImage(image: img)
                     currentFilter.setValue(beginImage, forKey: "inputImage")
                     for param in filter.params {
+                        let paramView = ParameterView()
+                        paramView.setTitle(param.friendlyName)
+                        if param.filterDataType != .vector && param.filterDataType != .color {
+                            paramView.setSliderLimits(min: param.min ?? 0, max: param.max ?? 0, value: param.value as! NSNumber)
+                            paramContainer.addArrangedSubview(paramView)
+                        }
                         currentFilter.setValue(param.value, forKey: param.name)
                     }
                     if let output = currentFilter.outputImage {
