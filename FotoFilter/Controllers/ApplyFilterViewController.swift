@@ -86,9 +86,12 @@ class ApplyFilterViewController: PortraitViewController, Storyboarded {
                         paramView.setTitle(param.friendlyName)
                         if param.filterDataType != .vector && param.filterDataType != .color {
                             paramView.setSliderLimits(min: param.min ?? 0, max: param.max ?? 0, value: param.value as! NSNumber)
-                            paramContainer.addArrangedSubview(paramView)
+                            paramContainer.addChildView(paramView)
                         }
                         currentFilter.setValue(param.value, forKey: param.name)
+                    }
+                    if filter.params.count == 0 {
+                        paramContainer.addChildView(makeNoParamsLabel())
                     }
                     if let output = currentFilter.outputImage {
                         if let cgimage = context.createCGImage(output, from: output.extent) {
@@ -101,6 +104,15 @@ class ApplyFilterViewController: PortraitViewController, Storyboarded {
         }
     }
     
+    fileprivate func makeNoParamsLabel() -> UILabel {
+        let lbl = UILabel()
+        lbl.text = "No configurable parameters for this filter"
+        lbl.textColor = .white
+        let fontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: UIFont.TextStyle.caption1)
+        lbl.font = UIFont(descriptor: fontDescriptor, size: fontDescriptor.pointSize)
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }
 }
 
 // MARK: CollectionView handlers
