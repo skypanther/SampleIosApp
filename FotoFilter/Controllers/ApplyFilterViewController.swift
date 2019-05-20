@@ -17,6 +17,7 @@ class ApplyFilterViewController: PortraitViewController, Storyboarded {
     var photo: Photo?
     var miniPhoto: UIImage?
     var filters: [Filter]?
+    var currentFilter: Filter?
     var spinner: LoadingSpinner?
     
     // Outlets
@@ -50,6 +51,7 @@ class ApplyFilterViewController: PortraitViewController, Storyboarded {
         shareButtonOutlet.setTitleTextAttributes(Config.sharedInstance.navBarTitleTextAttributes, for: .focused)
         shareButtonOutlet.title = ButtonStrings.share
         self.filters = Filters.sharedInstance.filters
+        self.currentFilter = self.filters?[0]
         self.spinner = LoadingSpinner(frame: self.screenBackgroundView.frame)
         if let pic = photo {
             let fullPath = GeneralUtilities.getFullURLToMedia(filename: pic.photoFileName)
@@ -68,42 +70,53 @@ class ApplyFilterViewController: PortraitViewController, Storyboarded {
     
     fileprivate func applyFilter(_ filter: Filter) {
         if let pic = photo {
-            for childView in filterDetails.subviews {
-                childView.removeFromSuperview()
-            }
-            let paramContainer = ParametersContainer()
-            filterDetails.addSubview(paramContainer)
-            paramContainer.widthAnchor.constraint(equalTo: filterDetails.widthAnchor, multiplier: 1.0).isActive = true
-            paramContainer.heightAnchor.constraint(equalTo: filterDetails.heightAnchor, multiplier: 1.0).isActive = true
             let fullPath = GeneralUtilities.getFullURLToMedia(filename: pic.photoFileName)
             if let img = UIImage(contentsOfFile: fullPath.standardizedFileURL.path) {
-                let context = CIContext(options: nil)
-                if let currentFilter = CIFilter(name: filter.name) {
-                    let beginImage = CIImage(image: img)
-                    currentFilter.setValue(beginImage, forKey: "inputImage")
-                    for param in filter.params {
-                        let paramView = ParameterView()
-                        paramView.setTitle(param.friendlyName)
-                        if param.filterDataType != .vector && param.filterDataType != .color {
-                            paramView.setSliderLimits(min: param.min ?? 0, max: param.max ?? 0, value: param.value as! NSNumber)
-                            paramContainer.addChildView(paramView)
-                        }
-                        currentFilter.setValue(param.value, forKey: param.name)
-                    }
-                    if filter.params.count == 0 {
-                        paramContainer.addChildView(makeNoParamsLabel())
-                    }
-                    if let output = currentFilter.outputImage {
-                        if let cgimage = context.createCGImage(output, from: output.extent) {
-                            let outputImage = UIImage(cgImage: cgimage)
-                            self.largeImage.image = outputImage.scaleUIImageToWidth(375).crop(CGRect(x: 0, y: 0, width: 375, height: 375))
-                        }
-                    }
+                addFilterParamsView(forFilter: filter)
+                processImage(img, filter: filter)
+            }
+        }
+    }
+
+    fileprivate func addFilterParamsView(forFilter filter: Filter) {
+        for childView in filterDetails.subviews {
+            childView.removeFromSuperview()
+        }
+        let paramContainer = ParametersContainer()
+        filterDetails.addSubview(paramContainer)
+        paramContainer.widthAnchor.constraint(equalTo: filterDetails.widthAnchor, multiplier: 1.0).isActive = true
+        paramContainer.heightAnchor.constraint(equalTo: filterDetails.heightAnchor, multiplier: 1.0).isActive = true
+        for param in filter.params {
+            let paramView = ParameterView()
+            paramView.setTitle(param.friendlyName)
+            if param.filterDataType != .vector && param.filterDataType != .color {
+                paramView.setSliderLimits(min: param.min ?? 0, max: param.max ?? 0, value: param.value as! NSNumber)
+                paramView.slider.addTarget(self, action: "processImage", for: .valueChanged)
+                paramContainer.addChildView(paramView)
+            }
+        }
+        if filter.params.count == 0 {
+            paramContainer.addChildView(makeNoParamsLabel())
+        }
+    }
+
+    fileprivate func processImage(_ img: UIImage, filter: Filter) {
+        let context = CIContext(options: nil)
+        if let activeFilter = CIFilter(name: filter.name) {
+            let beginImage = CIImage(image: img)
+            activeFilter.setValue(beginImage, forKey: "inputImage")
+            for param in filter.params {
+                activeFilter.setValue(param.value, forKey: param.name)
+            }
+            if let output = activeFilter.outputImage {
+                if let cgimage = context.createCGImage(output, from: output.extent) {
+                    let outputImage = UIImage(cgImage: cgimage)
+                    self.largeImage.image = outputImage.scaleUIImageToWidth(375).crop(CGRect(x: 0, y: 0, width: 375, height: 375))
                 }
             }
         }
     }
-    
+
     fileprivate func makeNoParamsLabel() -> UILabel {
         let lbl = UILabel()
         lbl.text = "No configurable parameters for this filter"

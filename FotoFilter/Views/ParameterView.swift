@@ -47,6 +47,10 @@ class ParameterView: UIStackView {
         self.slider.maximumValue = max as! Float
         self.slider.value = value as! Float
     }
+    
+    public func setSliderCallback(cb: @escaping (_ value: NSNumber) -> Void) {
+//        self.slider.addTarget(self, action: cb, for: .valueChanged)
+    }
 
     private func setupUI() {
         self.axis = .horizontal
